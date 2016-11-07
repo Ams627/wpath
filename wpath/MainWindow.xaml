@@ -1,0 +1,31 @@
+﻿<Window x:Class="wpath.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpath"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" >
+    <Window.DataContext>
+        <local:PathInfo/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Add Path:"/>
+                <TextBox Text="{Binding Path}" Width="100"/>
+                <RadioButton GroupName="PathType" Content="System"/>
+                <RadioButton GroupName="PathType" Content="User"/>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding PathList}">
+                <DataGrid.RowHeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=., 
+                        RelativeSource={RelativeSource AncestorType=DataGridRow},
+                        Converter={local:RowNumberConverter}}"></TextBlock>
+                    </DataTemplate>
+                </DataGrid.RowHeaderTemplate>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
