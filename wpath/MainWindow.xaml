@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpath"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" >
+        Title="MainWindow" Height="500" Width="1024" >
     <Window.DataContext>
         <local:PathInfo/>
     </Window.DataContext>
@@ -17,7 +17,7 @@
                 <RadioButton GroupName="PathType" Content="System"/>
                 <RadioButton GroupName="PathType" Content="User"/>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding PathList}">
+            <DataGrid ItemsSource="{Binding PathList}" AutoGenerateColumns="False" ColumnWidth="*">
                 <DataGrid.RowHeaderTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Path=., 
@@ -25,6 +25,15 @@
                         Converter={local:RowNumberConverter}}"></TextBlock>
                     </DataTemplate>
                 </DataGrid.RowHeaderTemplate>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Directory">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
     </Grid>
