@@ -13,11 +13,11 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Add Path:"/>
-                <TextBox Text="{Binding Path}" Width="100"/>
-                <RadioButton GroupName="PathType" Content="System"/>
-                <RadioButton GroupName="PathType" Content="User"/>
+                <TextBox Text="{Binding Path}" Width="500"/>
+                <RadioButton GroupName="PathType" Content="System" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <RadioButton GroupName="PathType" Content="User" HorizontalAlignment="Right" Margin="10,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding PathList}" AutoGenerateColumns="False" ColumnWidth="*">
+            <DataGrid ItemsSource="{Binding PathList}" AutoGenerateColumns="False" ColumnWidth="*" IsReadOnly="False">
                 <DataGrid.RowHeaderTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Path=., 
@@ -26,13 +26,7 @@
                     </DataTemplate>
                 </DataGrid.RowHeaderTemplate>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Directory">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Directory" Binding="{Binding Path=.}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
